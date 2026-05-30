@@ -1,52 +1,85 @@
-# Welcome to your Expo app 👋
+# Application de recherche et gestion de bibliothèque musicale (iTunes)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Application mobile développée avec React Native (Expo) permettant de rechercher des musiques via l’API iTunes, de les sauvegarder localement, de les noter et de les organiser dans une bibliothèque personnelle.
 
-## Get started
+## Fonctionnalités principales
 
-1. Install dependencies
+### 1. Recherche de musiques
+- Recherche de morceaux via l’API publique iTunes
+- Recherche par nom de chanson ou artiste
+- Affichage dynamique des résultats en temps réel
+- Déclenchement de requêtes avec debounce pour limiter les appels API
+- Affichage des résultats sous forme de liste cliquable
 
-   ```bash
-   npm install
-   ```
+### 2. Détails d’un morceau
+- Affichage des informations du morceau :
+  - titre
+  - artiste
+  - pochette d’album
+- Lecture d’un extrait audio (`previewUrl`)
+- Arrêt automatique de la lecture lors du changement d’écran ou de morceau
+- Possibilité d’ajouter le morceau à la bibliothèque locale
 
-2. Start the app
+### 3. Système de notation
+- Attribution d’une note de 1 à 5 étoiles
+- Modification de la note à tout moment
+- Sauvegarde persistante via AsyncStorage
+- Tri des morceaux de la bibliothèque selon la note
 
-   ```bash
-   npx expo start
-   ```
+### 4. Bibliothèque personnelle
+- Sauvegarde des morceaux sélectionnés localement
+- Affichage de la liste des morceaux enregistrés
+- Suppression de morceaux de la bibliothèque
+- Tri des morceaux par note (ordre croissant ou décroissant)
+- Accès au détail de chaque morceau depuis la bibliothèque
 
-In the output, you'll find options to open the app in a
+### 5. Lecture audio
+- Lecture d’extraits musicaux via `expo-av`
+- Un seul audio peut être joué à la fois
+- Arrêt automatique lors :
+  - du changement d’écran
+  - de la navigation vers un autre morceau
+- Gestion propre des ressources audio (stop + unload)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Architecture technique
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- React Native (Expo)
+- Navigation : React Navigation (Bottom Tabs + Stack Navigation)
+- Stockage local : AsyncStorage
+- API externe : iTunes Search API
+- Lecture audio : expo-av
+- Icônes : Ionicons
 
-## Get a fresh project
+## Structure du projet
 
-When you're ready, run:
+- SearchScreen : recherche de musiques via iTunes API
+- LibraryScreen : affichage et gestion des morceaux sauvegardés
+- DetailsScreen : affichage détaillé + lecture audio + notation
+- Stars component : composant de notation personnalisée
+- storage/library.js : gestion du stockage local (CRUD AsyncStorage)
+- navigation : gestion des stacks et tabs
 
+## Installation
+
+### 1. Cloner le projet
 ```bash
-npm run reset-project
+git clone <repo-url>
+cd itunes-app
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Installer les dépendances et Expo CLI
+```
+npm install
+npm install -g expo-cli
+```
 
-## Learn more
+### 4. Lancer l’application
+```
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Lancer sur téléphone
+- Installer l’application Expo Go sur iOS ou Android
+- Scanner le QR code affiché dans le terminal ou dans le navigateur Expo
+- L’application se lance automatiquement sur l’appareil
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# Itunes-app
-# Itunes-app
